@@ -1,0 +1,354 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-vault: var(--vault);
+  --color-vault-deep: var(--vault-deep);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-mint: var(--mint);
+  --color-level-calm: var(--level-calm);
+  --color-level-mindful: var(--level-mindful);
+  --color-level-cooldown: var(--level-cooldown);
+  --color-level-iron: var(--level-iron);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.16 0.03 265);
+  --foreground: oklch(0.97 0.005 260);
+  --card: oklch(0.21 0.035 265);
+  --card-foreground: oklch(0.97 0.005 260);
+  --popover: oklch(0.19 0.033 265);
+  --popover-foreground: oklch(0.97 0.005 260);
+  --primary: oklch(0.83 0.14 88);
+  --primary-foreground: oklch(0.2 0.04 265);
+  --secondary: oklch(0.27 0.035 265);
+  --secondary-foreground: oklch(0.97 0.005 260);
+  --muted: oklch(0.26 0.03 265);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --accent: oklch(0.3 0.045 265);
+  --accent-foreground: oklch(0.97 0.005 260);
+  --destructive: oklch(0.63 0.2 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.83 0.14 88);
+  --vault: oklch(0.24 0.04 265);
+  --vault-deep: oklch(0.13 0.03 265);
+  --gold: oklch(0.83 0.14 88);
+  --gold-foreground: oklch(0.2 0.04 265);
+  --mint: oklch(0.82 0.13 165);
+  --level-calm: oklch(0.8 0.15 155);
+  --level-mindful: oklch(0.86 0.15 95);
+  --level-cooldown: oklch(0.78 0.16 60);
+  --level-iron: oklch(0.68 0.19 20);
+  --chart-1: oklch(0.83 0.14 88);
+  --chart-2: oklch(0.82 0.13 165);
+  --chart-3: oklch(0.7 0.13 250);
+  --chart-4: oklch(0.78 0.16 60);
+  --chart-5: oklch(0.68 0.19 20);
+  --sidebar: oklch(0.19 0.033 265);
+  --sidebar-foreground: oklch(0.97 0.005 260);
+  --sidebar-primary: oklch(0.83 0.14 88);
+  --sidebar-primary-foreground: oklch(0.2 0.04 265);
+  --sidebar-accent: oklch(0.27 0.035 265);
+  --sidebar-accent-foreground: oklch(0.97 0.005 260);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.83 0.14 88);
+  --shadow-vault: 0 18px 40px -22px oklch(0 0 0 / 0.85);
+  --gradient-vault: radial-gradient(120% 90% at 50% 0%, oklch(0.28 0.05 268) 0%, oklch(0.15 0.03 265) 60%);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--gradient-vault);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/*
+ * VOLT character animation system (Phase 5).
+ * Pure CSS — no animation libraries. Each character state owns one class.
+ * The whole system is disabled under prefers-reduced-motion (see bottom).
+ */
+
+@keyframes char-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes char-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6%); }
+}
+
+@keyframes char-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-12%) scale(1.08); }
+  60% { transform: translateY(0) scale(0.96); }
+}
+
+@keyframes char-shiver {
+  0%, 88%, 100% { transform: translateX(0) rotate(0deg); }
+  90% { transform: translateX(-2%) rotate(-2deg); }
+  92% { transform: translateX(2%) rotate(2deg); }
+  94% { transform: translateX(-2%) rotate(-1deg); }
+  96% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes char-sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+@keyframes char-pop {
+  0% { transform: scale(0.4); opacity: 0; }
+  70% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes char-fall {
+  from { background-position: 0 0, 0 0; }
+  to { background-position: 0 56px, 0 28px; }
+}
+
+@keyframes char-twinkle {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes char-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-140px) scale(0.4); opacity: 0; }
+}
+
+@keyframes char-chip-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+@layer components {
+  .char-anim-idle { animation: char-breathe 3.4s ease-in-out infinite; }
+  .char-anim-born { animation: char-pop 0.55s ease-out both, char-bob 2.6s ease-in-out 0.6s infinite; }
+  .char-anim-proud { animation: char-bob 2.2s ease-in-out infinite; }
+  .char-anim-worried { animation: char-shiver 2.8s ease-in-out infinite; }
+  .char-anim-cooling { animation: char-sway 4.5s ease-in-out infinite; }
+  .char-anim-celebrating { animation: char-bounce 1.1s ease-in-out infinite; }
+  .char-anim-resting { transform: rotate(-6deg); filter: saturate(0.55) brightness(0.9); }
+  .char-anim-chip-pulse { animation: char-chip-pulse 1.6s ease-in-out infinite; }
+
+  /* Ambient effect layers inside CharacterAvatar */
+  .char-fx {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .char-fx-snow::before,
+  .char-fx-snow::after {
+    content: "";
+    position: absolute;
+    inset: -56px 0 0 0;
+    background-image:
+      radial-gradient(circle, oklch(0.95 0.02 240 / 0.9) 1.5px, transparent 1.6px),
+      radial-gradient(circle, oklch(0.95 0.02 240 / 0.6) 1px, transparent 1.1px);
+    background-size: 28px 56px, 18px 28px;
+    animation: char-fall 3.5s linear infinite;
+  }
+
+  .char-fx-sparkles::before,
+  .char-fx-sparkles::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, var(--color-gold) 1.5px, transparent 1.6px),
+      radial-gradient(circle, oklch(0.95 0.1 95 / 0.9) 1px, transparent 1.1px);
+    background-size: 26px 26px, 17px 17px;
+    background-position: 4px 6px, 12px 2px;
+    animation: char-twinkle 1.4s ease-in-out infinite;
+  }
+
+  .char-fx-sparkles::after {
+    animation-delay: 0.7s;
+    background-position: 14px 12px, 3px 9px;
+  }
+
+  /* OutcomeLayer overlays */
+  .char-outcome-complete {
+    background: radial-gradient(90% 70% at 50% 100%, oklch(0.83 0.14 88 / 0.16) 0%, transparent 70%);
+  }
+
+  .char-outcome-broken {
+    background:
+      repeating-linear-gradient(115deg, transparent 0 14px, oklch(1 0 0 / 0.045) 14px 15px),
+      linear-gradient(180deg, oklch(0.5 0.05 250 / 0.10) 0%, transparent 60%);
+  }
+
+  .char-particle {
+    position: absolute;
+    bottom: -8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--color-gold);
+    animation: char-rise 2.6s ease-out infinite;
+  }
+
+  /* ---- MoneyCharacter moods ---- */
+  .mood-anim-happy { animation: char-bob 2.8s ease-in-out infinite; }
+  .mood-anim-calm { animation: char-breathe 3.6s ease-in-out infinite; }
+  .mood-anim-excited { animation: char-bounce 1.6s ease-in-out infinite; }
+  .mood-anim-worried { animation: char-shiver 2.6s ease-in-out infinite; }
+  .mood-anim-scared { animation: char-shiver 0.9s ease-in-out infinite; }
+  .mood-anim-sad { animation: char-sway 5s ease-in-out infinite; opacity: 0.85; }
+  .mood-anim-celebrating { animation: char-bounce 1s ease-in-out infinite; }
+
+  /* ---- Outcome sequences ---- */
+  .seq-complete {
+    animation: seq-light-on 1.6s ease-out both;
+  }
+  .seq-complete-icon { animation: char-bounce 1.1s ease-in-out infinite; }
+
+  .seq-break {
+    animation: seq-shake 0.6s ease-in-out both, seq-dim 2.2s ease-out 0.5s both;
+  }
+  .seq-break-icon { animation: seq-tilt 2.4s ease-out both; }
+
+  .seq-crack {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, transparent 48%, oklch(1 0 0 / 0.5) 49%, transparent 51%),
+      linear-gradient(60deg, transparent 62%, oklch(1 0 0 / 0.35) 63%, transparent 64%);
+    opacity: 0;
+    animation: seq-crack-in 1.4s ease-out 0.5s forwards;
+  }
+}
+
+@keyframes seq-light-on {
+  0% { box-shadow: none; filter: brightness(0.7); }
+  60% { box-shadow: 0 0 40px -6px oklch(0.83 0.14 88 / 0.55); filter: brightness(1.15); }
+  100% { box-shadow: 0 0 26px -8px oklch(0.83 0.14 88 / 0.4); filter: brightness(1); }
+}
+
+@keyframes seq-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  45% { transform: translateX(5px); }
+  70% { transform: translateX(-3px); }
+}
+
+@keyframes seq-dim {
+  to { filter: brightness(0.6) saturate(0.4); }
+}
+
+@keyframes seq-tilt {
+  to { transform: rotate(-10deg) translateY(4px); opacity: 0.8; }
+}
+
+@keyframes seq-crack-in {
+  to { opacity: 1; }
+}
+
+/* Reduced motion: every character animation becomes static. State chips and
+ * outcome tinting remain, so emotional state is still fully readable. */
+@media (prefers-reduced-motion: reduce) {
+  .char-anim-idle,
+  .char-anim-born,
+  .char-anim-proud,
+  .char-anim-worried,
+  .char-anim-cooling,
+  .char-anim-celebrating,
+  .char-anim-chip-pulse,
+  .char-fx-snow::before,
+  .char-fx-snow::after,
+  .char-fx-sparkles::before,
+  .char-fx-sparkles::after,
+  .char-particle,
+  [class^="mood-anim-"],
+  .seq-complete,
+  .seq-complete-icon,
+  .seq-break,
+  .seq-break-icon,
+  .seq-crack {
+    animation: none !important;
+  }
+}
